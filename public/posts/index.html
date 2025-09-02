@@ -27,6 +27,12 @@
         text-shadow: 0 0 10px #0f0;
       }
 
+      /* Purple WR173UP5 heading */
+      header h1 {
+        color: #a020f0 !important;
+        text-shadow: 0 0 15px #a020f0, 0 0 25px #6a0dad;
+      }
+
       a {
         color: #0f0 !important;
         text-decoration: none;
@@ -50,26 +56,25 @@
         color: #0f0 !important;
       }
 
-      .nested-links a {
-        color: #0f0 !important;
-      }
-
-      /* Post container glow */
-      .mb3.pa4 {
+      /* Post card */
+      .post-card {
+        display: block;
         border: 1px solid #0f0;
         border-radius: 8px;
-        box-shadow: 0 0 15px #0f0;
+        box-shadow: 0 0 10px #0f0;
+        padding: 1rem;
+        margin: 1rem auto;
+        width: 250px;
+        text-align: center;
+        transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
       }
-
-      /* Read more button hacker style */
-      .ba {
-        border: 1px solid #0f0 !important;
-        color: #0f0 !important;
-        background: transparent !important;
+      .post-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #0f0, 0 0 30px #a020f0;
       }
-      .ba:hover {
-        background: #0f0 !important;
-        color: black !important;
+      .post-card h1 {
+        margin: 0;
+        font-size: 1.4rem;
       }
     </style>
 
@@ -77,7 +82,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-
   </head>
 
   <body class="ma0 avenir production">
@@ -85,8 +89,7 @@
       <div class="pb3-m pb6-l bg-black">
         <nav class="pv3 ph3 ph4-ns" role="navigation">
           <div class="flex-l center items-center justify-between">
-            <a href="/0xD3f3c7-Blog/" class="f3 fw2 no-underline">
-            </a>
+            <a href="/0xD3f3c7-Blog/" class="f3 fw2 no-underline"></a>
             <div class="flex-l items-center">
               <div class="ananke-socials"></div>
             </div>
@@ -104,20 +107,10 @@
     <main class="pb7" role="main">
       <article class="pa3 pa4-ns nested-copy-line-height">
         <section class="flex-ns mt5 flex-wrap justify-around">
-          <div class="w-100 w-30-l mb4 relative">
-            <div class="w-100 mb4 nested-copy-line-height relative">
-              <div class="mb3 pa4 overflow-hidden">
-                <h1 class="f3">
-                  <a href="/0xD3f3c7-Blog/posts/artificial/">
-                    H4ckTh3B0x: 4r71f1c14l
-                  </a>
-                </h1>
-                <div class="nested-links f5 lh-copy nested-copy-line-height">
-                </div>
-                </a>
-              </div>
-            </div>
-          </div>
+          <!-- Entire card clickable -->
+          <a href="/0xD3f3c7-Blog/posts/artificial/" class="post-card">
+            <h1>H4ckTh3B0x: 4r71f1c14l</h1>
+          </a>
         </section>
       </article>
     </main>
