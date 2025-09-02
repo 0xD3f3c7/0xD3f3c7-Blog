@@ -17,6 +17,9 @@
       color: #00ff00;
       margin: 0;
       overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .container {
@@ -24,6 +27,7 @@
       margin: auto;
       padding: 2rem;
       text-align: center;
+      flex: 1;
     }
 
     /* GIF inside the text */
@@ -43,7 +47,6 @@
       overflow: hidden;
       white-space: nowrap;
       padding: 0.5rem 0;
-      margin: 2rem 0;
       font-size: 1.2rem;
       color: #a020f0; /* Purple color */
       font-weight: bold;
@@ -101,8 +104,8 @@
       text-align: center;
       padding: 1rem;
       color: #aaa;
-      margin-top: 2rem;
-      border: none; /* removed the top border line */
+      margin-top: auto;
+      border: none;
     }
   </style>
 </head>
@@ -112,11 +115,6 @@
     <!-- Name with GIF inside -->
     <h1 class="gif-text mt-10">0xD3f3c7</h1>
 
-    <!-- Scrolling welcome text in l33t speak -->
-    <div class="welcome-marquee">
-      <p>welcome to the void — here you will have access to various hacking tools, writeups, and more to come...</p>
-    </div>
-
     <!-- Tabs / Links in l33t speak -->
     <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
       <a href="https://0xd3f3c7.github.io/0xD3f3c7-Blog/posts/" class="nav-link">writeups</a>
@@ -124,8 +122,13 @@
       <a href="/about/" class="nav-link">about</a>
     </div>
 
-    <!-- Typing effect under marquee in l33t speak -->
+    <!-- Typing effect under tabs -->
     <p class="text-2xl typing-effect mt-4 mb-8">_</p>
+  </div>
+
+  <!-- Scrolling welcome text at the bottom -->
+  <div class="welcome-marquee">
+    <p>welcome to the void — here you will have access to various hacking tools, writeups, and more to come...</p>
   </div>
 
   <footer>
