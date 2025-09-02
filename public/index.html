@@ -2,58 +2,64 @@
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="generator" content="Hugo 0.131.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0xD3f3c7</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    
+
     <style>
         body {
             font-family: 'VT323', monospace;
             background-color: black;
             color: #00ff00;
+            overflow-x: hidden;
+            margin: 0;
         }
 
         .container {
             max-width: 90%;
             margin: auto;
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
-        .text-shadow-neon {
-            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #008000;
-        }
-
-        /* Using GIF as text color for 0xD3f3c7 */
-        .static-text {
-            background-image: url("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmszZXRoMTlxNTNsNzVkMWlnaHk2dTFrMDA5MmkxN2RqYWo4ZGNqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQS9YkJXofyeI/giphy.gif");
-            background-size: cover;
-            background-position: center;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 5px #00ff00;
+        /* GIF animated text */
+        .gif-text {
+            position: relative;
             font-size: 8rem;
+            font-weight: bold;
+            margin-top: 4rem;
         }
 
-        @media (max-width: 640px) {
-            .container {
-                padding: 1rem;
-            }
-            h1.static-text {
-                font-size: 4rem;
-            }
-            .nav-link {
-                font-size: 1rem;
-                padding: 0.5rem 1rem;
-            }
+        .gif-text img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            -webkit-mask-image: text;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            -webkit-mask-size: cover;
+            mask-image: text;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: cover;
         }
 
+        .gif-text span {
+            visibility: hidden;
+        }
+
+        /* Typing effect */
         .typing-effect::after {
             content: '';
             display: inline-block;
@@ -66,28 +72,80 @@
             from, to { background: transparent; }
             50% { background: #00ff00; }
         }
+
+        .welcome-marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            border: 1px solid #0f0;
+            padding: 0.5rem;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+        }
+
+        .welcome-marquee p {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+            color: #0f0;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .nav-link {
+            border: 2px solid #00ff00;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: #0f0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: #0f0;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            text-align: center;
+            color: #aaa;
+        }
     </style>
 </head>
 <body>
-    <div class="container flex flex-col justify-center items-center text-center">
-        <!-- 0xD3f3c7 with GIF -->
-        <h1 class="static-text mt-20">0xD3f3c7</h1>
-        
-        <!-- Typing effect subtitle -->
-        <p class="text-2xl mt-4 mb-8 typing-effect">_</p>
+    <div class="container">
+        <!-- GIF animated name -->
+        <h1 class="gif-text">
+            <span>0xD3f3c7</span>
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmszZXRoMTlxNTNsNzVkMWlnaHk2dTFrMDA5MmkxN2RqYWo4ZGNqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQS9YkJXofyeI/giphy.gif" alt="0xD3f3c7">
+        </h1>
+
+        <!-- Moving welcome text -->
+        <div class="welcome-marquee">
+            <p>Welcome to the Void — here you will have access to various hacking tools, writeups, and more to come...</p>
+        </div>
 
         <!-- Navigation tabs -->
         <div class="flex flex-col sm:flex-row gap-4 mb-8">
-            <a href="/posts/" class="nav-link border-2 border-green-400 rounded-lg p-2 px-6 hover:bg-green-400 hover:text-black transition-colors duration-300 transform hover:scale-105">
-                <span class="text-shadow-neon">WRITEUPS</span>
-            </a>
-            <a href="/tools/" class="nav-link border-2 border-green-400 rounded-lg p-2 px-6 hover:bg-green-400 hover:text-black transition-colors duration-300 transform hover:scale-105">
-                <span class="text-shadow-neon">TOOLS</span>
-            </a>
+            <a href="/0xD3f3c7-Blog/posts/" class="nav-link">WRITEUPS</a>
+            <a href="/tools/" class="nav-link">TOOLS</a>
+            <a href="/about/" class="nav-link">ABOUT</a>
         </div>
 
-        <!-- Footer -->
-        <p class="text-sm mt-8 opacity-50">&copy; 2025. All rights reserved.</p>
+        <!-- Typing subtitle -->
+        <p class="text-2xl typing-effect mt-4 mb-8">_</p>
+
+        <footer>
+            &copy; 2025. All rights reserved.
+        </footer>
     </div>
 
     <script>
@@ -99,7 +157,7 @@
             if (i < subtitle.length) {
                 subtitleElement.textContent = subtitle.substring(0, i + 1);
                 i++;
-                setTimeout(type, 50); 
+                setTimeout(type, 50);
             } else {
                 subtitleElement.classList.remove('typing-effect');
             }
