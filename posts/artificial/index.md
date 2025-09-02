@@ -1,3 +1,9 @@
+---
+title: "HackTheBox: Artificial"
+date: 2025-09-02
+draft: false
+---
+
 # HackTheBox: Artificial
 
 # ===================================
