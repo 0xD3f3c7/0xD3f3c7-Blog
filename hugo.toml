@@ -1,0 +1,4 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = '0xD3f3c7'
+theme = 'gif-theme'
