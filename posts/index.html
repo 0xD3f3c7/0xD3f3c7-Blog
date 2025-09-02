@@ -24,10 +24,15 @@
       text-shadow: 0 0 10px #0f0;
     }
 
-    /* Purple WR173UP5 heading */
-    header h1 {
-      color: #a020f0 !important;
-      text-shadow: 0 0 15px #a020f0, 0 0 25px #6a0dad;
+    /* GIF effect for headers */
+    .gif-text {
+      font-size: 4rem;
+      font-weight: bold;
+      background: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmszZXRoMTlxNTNsNzVkMWlnaHk2dTFrMDA5MmkxN2RqYWo4ZGNqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQS9YkJXofyeI/giphy.gif') center/cover no-repeat;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
     }
 
     a {
@@ -71,20 +76,8 @@
       margin: 0;
       font-size: 1.4rem;
     }
-
-    /* GIF inside the text for Writeups */
-    .gif-text {
-      font-size: 2rem; /* fits inside post card */
-      font-weight: bold;
-      background: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmszZXRoMTlxNTNsNzVkMWlnaHk2dTFrMDA5MmkxN2RqYWo4ZGNqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQS9YkJXofyeI/giphy.gif') center/cover no-repeat;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
   </style>
 </head>
-
 <body class="ma0 avenir production">
   <header>
     <div class="pb3-m pb6-l bg-black">
@@ -96,9 +89,9 @@
           </div>
         </div>
       </nav>
-
       <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 mb0 lh-title">
+        <!-- WR173UP5 with GIF-text effect -->
+        <h1 class="gif-text f2 f-subheadline-l fw2 mb0 lh-title">
           WR173UP5
         </h1>
       </div>
@@ -108,9 +101,9 @@
   <main class="pb7" role="main">
     <article class="pa3 pa4-ns nested-copy-line-height">
       <section class="flex-ns mt5 flex-wrap justify-around">
-        <!-- Entire card clickable with GIF effect -->
+        <!-- Entire card clickable -->
         <a href="/0xD3f3c7-Blog/posts/artificial/" class="post-card">
-          <h1 class="gif-text">Writeups</h1>
+          <h1>H4ckTh3B0x: 4r71f1c14l</h1>
         </a>
       </section>
     </article>
@@ -135,21 +128,18 @@
     }
 
     const postCards = document.querySelectorAll('.post-card');
-
     postCards.forEach(card => {
       card.addEventListener('mouseenter', () => {
         const bg = getRandomColor();
-        const text = '#000000'; // readable on bright backgrounds
+        const text = '#000000'; // keep text readable on bright background
         card.style.backgroundColor = bg;
         card.style.color = text;
         card.querySelector('h1').style.color = text;
       });
-
       card.addEventListener('mouseleave', () => {
         card.style.backgroundColor = 'black';
         card.style.color = '#0f0';
-        card.querySelector('h1').style.color = 'transparent';
-        card.querySelector('h1').classList.add('gif-text'); // restore GIF effect
+        card.querySelector('h1').style.color = '#0f0';
       });
     });
   </script>
