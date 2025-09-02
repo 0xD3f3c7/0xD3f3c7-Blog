@@ -1,179 +1,152 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0xD3f3c7</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0xD3f3c7</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'VT323', monospace;
-            color: #00ff00;
-            margin: 0;
-            overflow-x: hidden;
-            background: rgba(0, 0, 0, 0.6); /* semi-transparent black */
-            backdrop-filter: blur(2px); /* subtle blur behind text */
-        }
+  <style>
+    body {
+      font-family: 'VT323', monospace;
+      background-color: black;
+      color: #00ff00;
+      margin: 0;
+      overflow-x: hidden;
+    }
 
-    
-        }
+    .container {
+      max-width: 90%;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
 
-        .container {
-            max-width: 90%;
-            margin: auto;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
+    /* GIF inside the text */
+    .gif-text {
+      font-size: 6rem;
+      font-weight: bold;
+      background: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmszZXRoMTlxNTNsNzVkMWlnaHk2dTFrMDA5MmkxN2RqYWo4ZGNqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQS9YkJXofyeI/giphy.gif') center/cover no-repeat;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
 
-        /* GIF inside the text */
-        .gif-text {
-            font-size: 6rem;
-            font-weight: bold;
-            background: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmszZXRoMTlxNTNsNzVkMWlnaHk2dTFrMDA5MmkxN2RqYWo4ZGNqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQS9YkJXofyeI/giphy.gif') center/cover no-repeat;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-            transition: transform 0.3s, filter 0.3s;
-        }
+    /* Welcome marquee without border */
+    .welcome-marquee {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.5rem 0;
+      margin: 2rem 0;
+      font-size: 1.2rem;
+      color: #0f0;
+    }
 
-        .gif-text:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 15px #00ff00);
-        }
+    .welcome-marquee p {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 15s linear infinite;
+    }
 
-        /* Scrolling welcome text without box */
-        .welcome-marquee {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 0;
-            margin: 2rem 0;
-            font-size: 1.2rem;
-            color: #0f0;
-        }
+    @keyframes marquee {
+      0%   { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
 
-        .welcome-marquee p {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 15s linear infinite alternate;
-        }
+    /* Tabs */
+    .nav-link {
+      border: 2px solid #0f0;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1.5rem;
+      color: #0f0;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
 
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-100%); }
-        }
+    .nav-link:hover {
+      background-color: #0f0;
+      color: black;
+      transform: scale(1.05);
+    }
 
-        /* Tabs with glow */
-        .nav-link {
-            border: 2px solid #0f0;
-            border-radius: 0.5rem;
-            padding: 0.5rem 1.5rem;
-            color: #0f0;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
-        }
+    /* Typing effect */
+    .typing-effect::after {
+      content: '';
+      display: inline-block;
+      width: 2px;
+      background: #0f0;
+      animation: blink 1s step-end infinite;
+    }
 
-        .nav-link:hover {
-            background-color: #0f0;
-            color: black;
-            transform: scale(1.05);
-        }
+    @keyframes blink {
+      0%, 100% { background: transparent; }
+      50%      { background: #0f0; }
+    }
 
-        /* Typing effect */
-        .typing-effect::after {
-            content: '';
-            display: inline-block;
-            width: 2px;
-            background: #0f0;
-            animation: blink 1s step-end infinite;
-        }
+    @media (max-width: 640px) {
+      .gif-text       { font-size: 3rem; }
+      .welcome-marquee { font-size: 1rem; }
+      .nav-link       { font-size: 0.9rem; padding: 0.5rem 1rem; }
+    }
 
-        @keyframes blink {
-            0%, 100% { background: transparent; }
-            50% { background: #0f0; }
-        }
-
-        @media (max-width: 640px) {
-            .gif-text { font-size: 3rem; }
-            .welcome-marquee { font-size: 1rem; }
-            .nav-link { font-size: 0.9rem; padding: 0.5rem 1rem; }
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            border-top: 1px solid #555;
-            color: #aaa;
-            margin-top: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 1rem;
+      border-top: 1px solid #555;
+      color: #aaa;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <!-- Name with GIF inside -->
-        <h1 class="gif-text mt-10">0xD3f3c7</h1>
+  <div class="container">
+    <!-- Name with GIF inside -->
+    <h1 class="gif-text mt-10">0xD3f3c7</h1>
 
-        <!-- Scrolling welcome text in l33t speak -->
-        <div class="welcome-marquee">
-            <p>W3lc0m3 70 7h3 V01d — h3r3 y0u w1ll h4v3 4cc355 70 v4r10u5 h4ck1ng 700l5, wr173up5, 4nd m0r3 70 c0m3...</p>
-        </div>
-
-        <!-- Tabs / Links in l33t speak -->
-        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-            <a href="https://0xd3f3c7.github.io/0xD3f3c7-Blog/posts/" class="nav-link">WR173UP5</a>
-            <a href="/tools/" class="nav-link">700L5</a>
-            <a href="/about/" class="nav-link">4B0U7</a>
-        </div>
-
-        <!-- Typing effect with rotating phrases -->
-        <p class="text-2xl typing-effect mt-4 mb-8">_</p>
+    <!-- Scrolling welcome text in l33t speak -->
+    <div class="welcome-marquee">
+      <p>W3lc0m3 70 7h3 V01d — h3r3 y0u w1ll h4v3 4cc355 70 v4r10u5 h4ck1ng 700l5, wr173up5, 4nd m0r3 70 c0m3...</p>
     </div>
 
-    <footer>
-        &copy; 2025. 4ll r1gh75 r3s3rv3d.
-    </footer>
+    <!-- Tabs / Links in l33t speak -->
+    <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+      <a href="https://0xd3f3c7.github.io/0xD3f3c7-Blog/posts/" class="nav-link">WR173UP5</a>
+      <a href="/tools/" class="nav-link">700L5</a>
+      <a href="/about/" class="nav-link">4B0U7</a>
+    </div>
 
-    <script>
-        const phrases = [
-            "H4CK 7H3 B0X - CYB3R 53CUR17Y - P3N735S71NG",
-            "P3N73S71NG L4B5 4W41T",
-            "C0D3, 3XP10IT, R3P0RT",
-            "H4CK 7H3 PL4N3T"
-        ];
+    <!-- Typing effect under marquee in l33t speak -->
+    <p class="text-2xl typing-effect mt-4 mb-8">_</p>
+  </div>
 
-        const subtitleElement = document.querySelector('.typing-effect');
-        let phraseIndex = 0;
-        let i = 0;
+  <footer>
+    &copy; 2025. 4ll r1gh75 r3s3rv3d.
+  </footer>
 
-        function type() {
-            if (i < phrases[phraseIndex].length) {
-                subtitleElement.textContent = phrases[phraseIndex].substring(0, i + 1);
-                i++;
-                setTimeout(type, 50);
-            } else {
-                setTimeout(() => {
-                    i = 0;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    subtitleElement.textContent = '';
-                    type();
-                }, 1500);
-            }
-        }
+  <script>
+    const subtitle = "H4CK 7H3 B0X - CYB3R 53CUR17Y - P3N735S71NG";
+    const subtitleElement = document.querySelector('.typing-effect');
+    let i = 0;
 
-        window.onload = type;
-    </script>
+    function type() {
+      if (i < subtitle.length) {
+        subtitleElement.textContent = subtitle.substring(0, i + 1);
+        i++;
+        setTimeout(type, 50);
+      } else {
+        subtitleElement.classList.remove('typing-effect');
+      }
+    }
+
+    window.onload = type;
+  </script>
 </body>
 </html>
