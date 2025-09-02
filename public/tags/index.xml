@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 0xD3f3c7</title>
-    <link>https://example.org/tags/</link>
+    <link>https://0xD3f3c7.github.io/0xD3f3c7-Blog/tags/</link>
     <description>Recent content in Tags on 0xD3f3c7</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Mar 2023 11:00:00 -0700</lastBuildDate>
-    <atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://0xD3f3c7.github.io/0xD3f3c7-Blog/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Blue</title>
-      <link>https://example.org/tags/blue/</link>
+      <link>https://0xD3f3c7.github.io/0xD3f3c7-Blog/tags/blue/</link>
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
-      <guid>https://example.org/tags/blue/</guid>
+      <guid>https://0xD3f3c7.github.io/0xD3f3c7-Blog/tags/blue/</guid>
       <description></description>
     </item>
     <item>
       <title>Green</title>
-      <link>https://example.org/tags/green/</link>
+      <link>https://0xD3f3c7.github.io/0xD3f3c7-Blog/tags/green/</link>
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
-      <guid>https://example.org/tags/green/</guid>
+      <guid>https://0xD3f3c7.github.io/0xD3f3c7-Blog/tags/green/</guid>
       <description></description>
     </item>
     <item>
       <title>Red</title>
-      <link>https://example.org/tags/red/</link>
+      <link>https://0xD3f3c7.github.io/0xD3f3c7-Blog/tags/red/</link>
       <pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate>
-      <guid>https://example.org/tags/red/</guid>
+      <guid>https://0xD3f3c7.github.io/0xD3f3c7-Blog/tags/red/</guid>
       <description></description>
     </item>
   </channel>
