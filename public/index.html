@@ -15,80 +15,44 @@
             font-family: 'VT323', monospace;
             background-color: black;
             color: #00ff00;
-            overflow-x: hidden;
             margin: 0;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 90%;
             margin: auto;
             padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             text-align: center;
         }
 
-        /* GIF animated text */
+        /* GIF inside the text */
         .gif-text {
-            position: relative;
-            font-size: 8rem;
+            font-size: 6rem;
             font-weight: bold;
-            margin-top: 4rem;
-        }
-
-        .gif-text img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            -webkit-mask-image: text;
-            -webkit-mask-repeat: no-repeat;
-            -webkit-mask-position: center;
-            -webkit-mask-size: cover;
-            mask-image: text;
-            mask-repeat: no-repeat;
-            mask-position: center;
-            mask-size: cover;
-        }
-
-        .gif-text span {
-            visibility: hidden;
-        }
-
-        /* Typing effect */
-        .typing-effect::after {
-            content: '';
+            background: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmszZXRoMTlxNTNsNzVkMWlnaHk2dTFrMDA5MmkxN2RqYWo4ZGNqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQS9YkJXofyeI/giphy.gif') center/cover no-repeat;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             display: inline-block;
-            width: 2px;
-            background: #00ff00;
-            animation: blink 1s step-end infinite;
         }
 
-        @keyframes blink {
-            from, to { background: transparent; }
-            50% { background: #00ff00; }
-        }
-
+        /* Welcome marquee */
         .welcome-marquee {
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
-            box-sizing: border-box;
             border: 1px solid #0f0;
             padding: 0.5rem;
             margin: 2rem 0;
             font-size: 1.2rem;
+            color: #0f0;
         }
 
         .welcome-marquee p {
             display: inline-block;
             padding-left: 100%;
             animation: marquee 15s linear infinite;
-            color: #0f0;
         }
 
         @keyframes marquee {
@@ -96,57 +60,77 @@
             100% { transform: translateX(-100%); }
         }
 
+        /* Tabs */
         .nav-link {
-            border: 2px solid #00ff00;
+            border: 2px solid #0f0;
             border-radius: 0.5rem;
             padding: 0.5rem 1.5rem;
-            font-size: 1.2rem;
-            text-decoration: none;
             color: #0f0;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
         .nav-link:hover {
-            background: #0f0;
+            background-color: #0f0;
             color: black;
             transform: scale(1.05);
         }
 
+        /* Typing effect */
+        .typing-effect::after {
+            content: '';
+            display: inline-block;
+            width: 2px;
+            background: #0f0;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { background: transparent; }
+            50% { background: #0f0; }
+        }
+
+        @media (max-width: 640px) {
+            .gif-text { font-size: 3rem; }
+            .welcome-marquee { font-size: 1rem; }
+            .nav-link { font-size: 0.9rem; padding: 0.5rem 1rem; }
+        }
+
         footer {
-            margin-top: 2rem;
-            padding: 1rem;
             text-align: center;
+            padding: 1rem;
+            border-top: 1px solid #555;
             color: #aaa;
+            margin-top: 2rem;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <!-- GIF animated name -->
-        <h1 class="gif-text">
-            <span>0xD3f3c7</span>
-            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmszZXRoMTlxNTNsNzVkMWlnaHk2dTFrMDA5MmkxN2RqYWo4ZGNqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQS9YkJXofyeI/giphy.gif" alt="0xD3f3c7">
-        </h1>
+        <!-- Name with GIF inside -->
+        <h1 class="gif-text mt-10">0xD3f3c7</h1>
 
-        <!-- Moving welcome text -->
+        <!-- Scrolling welcome text -->
         <div class="welcome-marquee">
             <p>Welcome to the Void — here you will have access to various hacking tools, writeups, and more to come...</p>
         </div>
 
-        <!-- Navigation tabs -->
-        <div class="flex flex-col sm:flex-row gap-4 mb-8">
-            <a href="/0xD3f3c7-Blog/posts/" class="nav-link">WRITEUPS</a>
+        <!-- Tabs / Links -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <a href="https://0xd3f3c7.github.io/0xD3f3c7-Blog/posts/" class="nav-link">WRITEUPS</a>
             <a href="/tools/" class="nav-link">TOOLS</a>
             <a href="/about/" class="nav-link">ABOUT</a>
         </div>
 
-        <!-- Typing subtitle -->
+        <!-- Typing effect under marquee -->
         <p class="text-2xl typing-effect mt-4 mb-8">_</p>
-
-        <footer>
-            &copy; 2025. All rights reserved.
-        </footer>
     </div>
+
+    <footer>
+        &copy; 2025. All rights reserved.
+    </footer>
 
     <script>
         const subtitle = "HACK THE BOX - CYBER SECURITY - PENTESTING";
@@ -163,9 +147,7 @@
             }
         }
 
-        window.onload = function() {
-            type();
-        };
+        window.onload = type;
     </script>
 </body>
 </html>
