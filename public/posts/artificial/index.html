@@ -1,41 +1,132 @@
 <!DOCTYPE html>
-<html>
-<head><script src="/0xD3f3c7-Blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=0xD3f3c7-Blog/livereload" data-no-instant defer></script>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
     <title>HackTheBox: Artificial | 0xD3f3c7</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: monospace;
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-            line-height: 1.6;
-        }
-        pre {
-            background-color: #1a1a1a;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #00ff00;  
-        }
-        a {
-            color: #8a2be2;  
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        details summary {
-            outline: none;
-        }
-    </style>
-</head>
-<body>
-    <h1>HackTheBox: Artificial</h1>
-    <hr>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to:
+http://artificial.htb Add this domain to /etc/hosts:
+sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login
+http://artificial.htb/register
+Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.">
+    <meta name="generator" content="Hugo 0.131.0">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/0xD3f3c7-Blog/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://0xD3f3c7.github.io/0xD3f3c7-Blog/posts/artificial/">
+    
+
+    <meta property="og:url" content="https://0xD3f3c7.github.io/0xD3f3c7-Blog/posts/artificial/">
+  <meta property="og:site_name" content="0xD3f3c7">
+  <meta property="og:title" content="HackTheBox: Artificial">
+  <meta property="og:description" content="Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to:
+http://artificial.htb Add this domain to /etc/hosts:
+sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login
+http://artificial.htb/register
+Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-02T08:17:12-04:00">
+    <meta property="article:modified_time" content="2025-09-02T08:17:12-04:00">
+
+  <meta itemprop="name" content="HackTheBox: Artificial">
+  <meta itemprop="description" content="Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to:
+http://artificial.htb Add this domain to /etc/hosts:
+sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login
+http://artificial.htb/register
+Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.">
+  <meta itemprop="datePublished" content="2025-09-02T08:17:12-04:00">
+  <meta itemprop="dateModified" content="2025-09-02T08:17:12-04:00">
+  <meta itemprop="wordCount" content="245">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="HackTheBox: Artificial">
+  <meta name="twitter:description" content="Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to:
+http://artificial.htb Add this domain to /etc/hosts:
+sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login
+http://artificial.htb/register
+Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.">
+
+      
+  
+
+
+    
+	
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/0xD3f3c7-Blog/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        0xD3f3c7
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">HackTheBox: Artificial</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-09-02T08:17:12-04:00">September 2, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><hr>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h3 id="port-scan">Port Scan</h3>
@@ -196,6 +287,34 @@ http://artificial.htb
 <p>Hope you learned something new!</p>
 <p>Happy hacking, 0xD3f3c7</p>
 <!-- raw HTML omitted -->
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
 
-</body>
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://0xD3f3c7.github.io/0xD3f3c7-Blog/" >
+    &copy;  0xD3f3c7 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
 </html>

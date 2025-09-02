@@ -1,6 +1,22 @@
 baseURL = 'https://0xD3f3c7.github.io/0xD3f3c7-Blog/'
 languageCode = 'en-us'
 title = '0xD3f3c7'
-theme = 'gif-theme'
+theme = 'ananke'
 
+[params]
+  # Set the site's main color to a dark theme
+  bg_color = "black"
 
+  # Set the homepage to a darker gradient
+  featured_image = "/images/abstract-bg.svg"
+  # You can also use a cool image like this one
+  # featured_image = "https://images.unsplash.com/photo-1517436034111-e17df20b0802?q=80&w=1974&auto=format&fit=crop"
+
+  # Customize the homepage appearance
+  description = "A blog on hacking, cybersecurity, and more."
+
+  # Animate the homepage header
+  header_style = "animated"
+
+  # Animate buttons and links on hover
+  link_style = "hover"
