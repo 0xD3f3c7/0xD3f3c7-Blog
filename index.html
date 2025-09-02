@@ -17,6 +17,20 @@
             color: #00ff00;
             margin: 0;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Optional subtle matrix background */
+        body::before {
+            content: '';
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background: url('https://i.imgur.com/2yWlG2V.png') repeat; /* subtle dots or matrix-style image */
+            opacity: 0.05;
+            z-index: 0;
         }
 
         .container {
@@ -24,6 +38,8 @@
             margin: auto;
             padding: 2rem;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         /* GIF inside the text */
@@ -35,14 +51,20 @@
             background-clip: text;
             color: transparent;
             display: inline-block;
+            transition: transform 0.3s, filter 0.3s;
         }
 
-        /* Welcome marquee without border */
+        .gif-text:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 15px #00ff00);
+        }
+
+        /* Scrolling welcome text without box */
         .welcome-marquee {
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
-            padding: 0.5rem 0;
+            padding: 0;
             margin: 2rem 0;
             font-size: 1.2rem;
             color: #0f0;
@@ -51,7 +73,7 @@
         .welcome-marquee p {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 15s linear infinite;
+            animation: marquee 15s linear infinite alternate;
         }
 
         @keyframes marquee {
@@ -59,7 +81,7 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Tabs */
+        /* Tabs with glow */
         .nav-link {
             border: 2px solid #0f0;
             border-radius: 0.5rem;
@@ -68,6 +90,7 @@
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
+            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
         }
 
         .nav-link:hover {
@@ -102,6 +125,8 @@
             border-top: 1px solid #555;
             color: #aaa;
             margin-top: 2rem;
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
@@ -123,7 +148,7 @@
             <a href="/about/" class="nav-link">4B0U7</a>
         </div>
 
-        <!-- Typing effect under marquee in l33t speak -->
+        <!-- Typing effect with rotating phrases -->
         <p class="text-2xl typing-effect mt-4 mb-8">_</p>
     </div>
 
@@ -132,17 +157,29 @@
     </footer>
 
     <script>
-        const subtitle = "H4CK 7H3 B0X - CYB3R 53CUR17Y - P3N735S71NG";
+        const phrases = [
+            "H4CK 7H3 B0X - CYB3R 53CUR17Y - P3N735S71NG",
+            "P3N73S71NG L4B5 4W41T",
+            "C0D3, 3XP10IT, R3P0RT",
+            "H4CK 7H3 PL4N3T"
+        ];
+
         const subtitleElement = document.querySelector('.typing-effect');
+        let phraseIndex = 0;
         let i = 0;
 
         function type() {
-            if (i < subtitle.length) {
-                subtitleElement.textContent = subtitle.substring(0, i + 1);
+            if (i < phrases[phraseIndex].length) {
+                subtitleElement.textContent = phrases[phraseIndex].substring(0, i + 1);
                 i++;
                 setTimeout(type, 50);
             } else {
-                subtitleElement.classList.remove('typing-effect');
+                setTimeout(() => {
+                    i = 0;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    subtitleElement.textContent = '';
+                    type();
+                }, 1500);
             }
         }
 
