@@ -18,6 +18,21 @@
       flex-direction: column;
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Hacker-style subtle flicker background */
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 22%, 24%, 55% { opacity: 0.85; }
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #000;
+      z-index: -1;
+      animation: flicker 3s infinite;
     }
 
     /* Top-left blinking name */
@@ -36,8 +51,9 @@
 
     .animated-name {
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 2rem; /* slightly bigger */
       animation: redGreenBlink 1s infinite;
+      text-shadow: 0 0 3px #0f0, 0 0 6px #0f0; /* toned down glow */
     }
 
     /* Center content */
@@ -62,6 +78,7 @@
       margin-bottom: 2rem;
       font-size: 1.2rem;
       color: #0f0;
+      text-shadow: 0 0 2px #0f0;
     }
 
     .welcome-marquee p {
@@ -119,9 +136,9 @@
       color: #aaa;
     }
 
-    /* Optional hacker-style glow */
+    /* Optional hacker-style glow for text */
     .glow {
-      text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0;
+      text-shadow: 0 0 3px #0f0, 0 0 6px #0f0;
     }
   </style>
 </head>
@@ -147,7 +164,7 @@
       <!-- Additional tabs -->
       <div class="tabs">
         <div class="tab"><a href="/tools/">Tools</a></div>
-        <div class="tab"><a href="/writeups/">Writeups</a></div>
+        <div class="tab"><a href="https://0xd3f3c7.github.io/0xD3f3c7-Blog/posts/">Writeups</a></div>
         <div class="tab"><a href="/about/">About</a></div>
       </div>
     </section>
