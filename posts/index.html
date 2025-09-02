@@ -71,6 +71,17 @@
       margin: 0;
       font-size: 1.4rem;
     }
+
+    /* GIF inside the text for Writeups */
+    .gif-text {
+      font-size: 2rem; /* fits inside post card */
+      font-weight: bold;
+      background: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmszZXRoMTlxNTNsNzVkMWlnaHk2dTFrMDA5MmkxN2RqYWo4ZGNqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jQS9YkJXofyeI/giphy.gif') center/cover no-repeat;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
   </style>
 </head>
 
@@ -97,9 +108,9 @@
   <main class="pb7" role="main">
     <article class="pa3 pa4-ns nested-copy-line-height">
       <section class="flex-ns mt5 flex-wrap justify-around">
-        <!-- Entire card clickable -->
+        <!-- Entire card clickable with GIF effect -->
         <a href="/0xD3f3c7-Blog/posts/artificial/" class="post-card">
-          <h1>H4ckTh3B0x: 4r71f1c14l</h1>
+          <h1 class="gif-text">Writeups</h1>
         </a>
       </section>
     </article>
@@ -128,7 +139,7 @@
     postCards.forEach(card => {
       card.addEventListener('mouseenter', () => {
         const bg = getRandomColor();
-        const text = '#000000'; // keep text readable on bright background
+        const text = '#000000'; // readable on bright backgrounds
         card.style.backgroundColor = bg;
         card.style.color = text;
         card.querySelector('h1').style.color = text;
@@ -137,7 +148,8 @@
       card.addEventListener('mouseleave', () => {
         card.style.backgroundColor = 'black';
         card.style.color = '#0f0';
-        card.querySelector('h1').style.color = '#0f0';
+        card.querySelector('h1').style.color = 'transparent';
+        card.querySelector('h1').classList.add('gif-text'); // restore GIF effect
       });
     });
   </script>
